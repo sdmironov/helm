@@ -24,7 +24,7 @@ jobs:
     
     - name: Check that the git tag matches the chart version
       run: |
-        awk -u add yq
+        apk -u add yq
         chart_version=$(yq .version charts/${CHART_NAME}/Chart.yaml)
         if [[ "${GITHUB_REF_NAME}" == "${CHART_NAME}-${chart_version}" ]]; then
           echo "Git tag: ${GITHUB_REF_NAME}"
