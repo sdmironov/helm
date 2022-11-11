@@ -49,22 +49,30 @@ jobs:
 
     - name: test inside
       uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-      with:
-        entrypoint: 'sh'
-        args: -c "cat .git/config; ls -la; whoami; git status"
-        options: --user 1001
-    
-    - name: package
-      uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-      with:
-        args: package charts/my-chart
+      run: |
+        cat .git/config
+        ls -la
+        whoami
+        git status
 
-    - name: upload
-      uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-      with:
-        args: upload charts/my-chart
+    # - name: test inside
+    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
+    #   with:
+    #     entrypoint: 'sh'
+    #     args: -c "cat .git/config; ls -la; whoami; git status"
+    #     options: --user 1001
     
-    - name: index
-      uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-      with:
-        args: index charts/my-chart --push
+    # - name: package
+    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
+    #   with:
+    #     args: package charts/my-chart
+
+    # - name: upload
+    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
+    #   with:
+    #     args: upload charts/my-chart
+    
+    # - name: index
+    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
+    #   with:
+    #     args: index charts/my-chart --push
