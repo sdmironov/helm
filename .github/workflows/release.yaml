@@ -50,7 +50,7 @@ jobs:
     - name: test inside
       uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
       with:
-        entrypoint: 'bash'
+        entrypoint: 'sh'
         args: -c "cat .git/config"
     
     - name: package
