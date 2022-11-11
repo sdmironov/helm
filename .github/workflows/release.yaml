@@ -37,37 +37,19 @@ jobs:
     #       exit 1
     #     fi
 
-    - name: test
-      run: |
-        pwd
-        cat .git/config
-        ls -la
-        whoami
-        env | grep 'helm/helm'
-        git config --global --add safe.directory /__w/helm/helm
-        git status
-
     - name: Configure Git
       run: |
         git config user.name "$GITHUB_ACTOR"
         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-        git config safe.directory '*'
+        git config --global --add safe.directory "${GITHUB_WORKSPACE}"
+        env
+    
+    - name: cr
+      run: |
+        cr package charts/my-chart
+
     
 
-    # - name: test inside
-    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-    #   run: |
-    #     cat .git/config
-    #     ls -la
-    #     whoami
-    #     git status
-
-    # - name: test inside
-    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-    #   with:
-    #     entrypoint: 'sh'
-    #     args: -c "cat .git/config; ls -la; whoami; git status"
-    #     options: --user 1001
     
     # - name: package
     #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
