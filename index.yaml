@@ -2,6 +2,13 @@ apiVersion: v1
 entries:
   my-chart:
   - apiVersion: v2
+    created: "2022-11-11T13:54:47.530182962Z"
+    digest: 4839bc442d3b02c21ec86603c636a17aaf9bc32a3c0f0d9a5cfbf14fd6def4ec
+    name: my-chart
+    urls:
+    - https://github.com/sdmironov/helm/releases/download/my-chart-0.3.0/my-chart-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     created: "2022-11-11T13:51:09.133731488Z"
     digest: 32994974ce3736a9b7f910250a2f5275b44f58708d6b3a6d62fb9217e26e5632
     name: my-chart
@@ -43,4 +50,4 @@ entries:
     urls:
     - https://github.com/sdmironov/helm/releases/download/my-chart-0.1.1/my-chart-0.1.1.tgz
     version: 0.1.1
-generated: "2022-11-11T13:51:09.133808088Z"
+generated: "2022-11-11T13:54:47.530215762Z"
