@@ -10,6 +10,7 @@ env:
   CR_OWNER: ${{ github.repository_owner }}
   CR_GIT_REPO: ${{ github.event.repository.name }}
   CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CHART_NAME: my-chart
 
 jobs:
   release:
@@ -23,14 +24,15 @@ jobs:
     
     - name: Check that the git tag matches the chart version
       run: |
-        CHART_VERSION=$(yq .version charts/my-chart/Chart.yaml)
-        if [[ "${GITHUB_REF_NAME}" == "my-chart-${CHART_VERSION}" ]]; then
+        awk -u add yq
+        chart_version=$(yq .version charts/${CHART_NAME}/Chart.yaml)
+        if [[ "${GITHUB_REF_NAME}" == "${CHART_NAME}-${chart_version}" ]]; then
           echo "Git tag: ${GITHUB_REF_NAME}"
-          echo "Chart version: ${CHART_VERSION}"
+          echo "Chart version: ${chart_version}"
           echo "OK: Git tag matches chart version"
         else
           echo "Git tag: ${GITHUB_REF_NAME}"
-          echo "Chart version: ${CHART_VERSION}"
+          echo "Chart version: ${chart_version}"
           echo "ERROR: Git tag and chart version are different"
           exit 1
         fi
@@ -41,9 +43,9 @@ jobs:
         git config --global user.name "${GITHUB_ACTOR}"
         git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
     
-    - name: cr
+    - name: Pack and release
       run: |
-        cr package charts/my-chart
-        cr upload charts/my-chart
+        cr package "charts/${CHART_NAME}"
+        cr upload "charts/${CHART_NAME}"
         mkdir .cr-index
-        cr index charts/my-chart --push
+        cr index "charts/${CHART_NAME}" --push
