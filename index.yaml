@@ -1,0 +1,11 @@
+apiVersion: v1
+entries:
+  my-chart:
+  - apiVersion: v2
+    created: "2022-11-11T08:21:24.874282444Z"
+    digest: b9d42c112604f35f1110a468eaf118cd6d00d90191cfa49196b37d6d85ae4a64
+    name: my-chart
+    urls:
+    - https://github.com/sdmironov/helm/releases/download/my-chart-0.1.1/my-chart-0.1.1.tgz
+    version: 0.1.1
+generated: "2022-11-11T08:21:24.874286544Z"
