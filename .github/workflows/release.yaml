@@ -2,8 +2,6 @@ name: Release Charts
 
 on:
   push:
-    branches:
-    - master
     tags:
     - '[0-9]+.[0-9]+.[0-9]+'
     - '[0-9]+.[0-9]+.[0-9]+-[a-z]+.[0-9]+'
@@ -39,7 +37,6 @@ jobs:
 
     - name: Configure Git
       run: |
-        pwd; ls -la; whoami
         git config --global --add safe.directory "${GITHUB_WORKSPACE}"
         git config --global user.name "${GITHUB_ACTOR}"
         git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
@@ -50,21 +47,3 @@ jobs:
         cr upload charts/my-chart
         mkdir .cr-index
         cr index charts/my-chart --push
-
-    
-
-    
-    # - name: package
-    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-    #   with:
-    #     args: package charts/my-chart
-
-    # - name: upload
-    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-    #   with:
-    #     args: upload charts/my-chart
-    
-    # - name: index
-    #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
-    #   with:
-    #     args: index charts/my-chart --push
