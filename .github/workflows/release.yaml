@@ -37,18 +37,20 @@ jobs:
     #       exit 1
     #     fi
 
+    - name: test
+      run: |
+        pwd
+        cat .git/config
+        ls -la
+        whoami
+        git status
+
     - name: Configure Git
       run: |
         git config user.name "$GITHUB_ACTOR"
         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
         git config safe.directory '*'
     
-    - name: test
-      run: |
-        cat .git/config
-        ls -la
-        whoami
-        git status
 
     # - name: test inside
     #   uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
