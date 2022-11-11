@@ -46,6 +46,12 @@ jobs:
       run: |
         cat .git/config
         env
+
+    - name: test inside
+      uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
+      with:
+        entrypoint: 'bash -c'
+        args: cat .git/config
     
     - name: package
       uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
