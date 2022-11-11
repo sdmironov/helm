@@ -55,3 +55,8 @@ jobs:
       uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
       with:
         args: upload charts/my-chart
+    
+    - name: index
+      uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
+      with:
+        args: index charts/my-chart --push
