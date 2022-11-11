@@ -42,7 +42,7 @@ jobs:
         env
     
     - name: test
-      uses: quay.io/helmpack/chart-releaser:v1.4.1
+      uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
       with:
         args: package charts/mychart
       
