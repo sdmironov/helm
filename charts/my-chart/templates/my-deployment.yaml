@@ -16,3 +16,5 @@ spec:
       containers:
       - name: my-container
         image: {{ .Values.image }}:{{ .Values.tag }}
+      - name: my-container
+        image: {{ .Values.image }}:{{ .Values.tag }}
