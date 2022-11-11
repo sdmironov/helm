@@ -52,6 +52,7 @@ jobs:
       with:
         entrypoint: 'sh'
         args: -c "cat .git/config; ls -la; whoami; git status"
+        options: --user 1001
     
     - name: package
       uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
