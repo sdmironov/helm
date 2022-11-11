@@ -48,6 +48,7 @@ jobs:
       run: |
         cr package charts/my-chart
         cr upload charts/my-chart
+        mkdir .cr-index
         cr index charts/my-chart --push
 
     
