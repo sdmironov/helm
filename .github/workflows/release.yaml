@@ -7,8 +7,8 @@ on:
     - 'my-chart-[0-9]+.[0-9]+.[0-9]+-[a-z]+.[0-9]+'
 
 env:
-  CR_OWNER: sdmironov
-  CR_GIT_REPO: helm
+  CR_OWNER: ${{ github.repository_owner }}
+  CR_GIT_REPO: ${{ github.event.repository.name }}
   CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -21,19 +21,19 @@ jobs:
       with:
         fetch-depth: 0
     
-    # - name: Check that the git tag matches the chart version
-    #   run: |
-    #     CHART_VERSION=$(yq .version charts/Chart.yaml)
-    #     if [[ "${GITHUB_REF_NAME}" == "${CHART_VERSION}" ]]; then
-    #       echo "Git tag: ${GITHUB_REF_NAME}"
-    #       echo "Chart version: ${CHART_VERSION}"
-    #       echo "OK: Git tag matches chart version"
-    #     else
-    #       echo "Git tag: ${GITHUB_REF_NAME}"
-    #       echo "Chart version: ${CHART_VERSION}"
-    #       echo "ERROR: Git tag and chart version are different"
-    #       exit 1
-    #     fi
+    - name: Check that the git tag matches the chart version
+      run: |
+        CHART_VERSION=$(yq .version charts/my-chart/Chart.yaml)
+        if [[ "${GITHUB_REF_NAME}" == "my-chart-${CHART_VERSION}" ]]; then
+          echo "Git tag: ${GITHUB_REF_NAME}"
+          echo "Chart version: ${CHART_VERSION}"
+          echo "OK: Git tag matches chart version"
+        else
+          echo "Git tag: ${GITHUB_REF_NAME}"
+          echo "Chart version: ${CHART_VERSION}"
+          echo "ERROR: Git tag and chart version are different"
+          exit 1
+        fi
 
     - name: Configure Git
       run: |
