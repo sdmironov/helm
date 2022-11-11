@@ -43,6 +43,8 @@ jobs:
         cat .git/config
         ls -la
         whoami
+        env | grep 'helm/helm'
+        git config --global --add safe.directory /__w/helm/helm
         git status
 
     - name: Configure Git
