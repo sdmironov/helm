@@ -47,6 +47,8 @@ jobs:
     - name: cr
       run: |
         cr package charts/my-chart
+        cr upload charts/my-chart
+        cr index charts/my-chart --push
 
     
 
