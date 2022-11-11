@@ -41,10 +41,15 @@ jobs:
         cat .git/config
         env
     
-    - name: test
+    - name: package
       uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
       with:
-        args: package charts/mychart
+        args: package charts/my-chart
+
+    - name: upload
+      uses: docker://quay.io/helmpack/chart-releaser:v1.4.1
+      with:
+        args: upload charts/my-chart
       
 
     # - name: Run chart-releaser
